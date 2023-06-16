@@ -1,0 +1,26 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=blogposts;encrypt=true;trustServerCertificate=true;
+    username: sa
+    password: '@adewunmI1738'
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.SQLServerDialect
+          format_sql: true
+          show-sql: true
+  security:
+    jwt:
+      secret: "6E5A7234753778214125442A472D4B6150645367566B59703373357638792F43"
+      expiration: '1000 * 60 * 24'
+      issuer: "Jaaja"
+
+
