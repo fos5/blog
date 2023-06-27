@@ -20,15 +20,17 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class JwtService {
     @Value("${spring.security.jwt.expiration}")
-    private int expiration;
+    private long jwtExpiration;
     @Value("${spring.security.jwt.secret}")
     private static String SECRET_KEY;
     @Value("${spring.security.jwt.issuer}")
     private String issuer;
-
-    public String generateToken(
+    @Value("${spring.security.jwt.refresh}")
+    private long refreshExpiration;
+    public String buildToken(
             Map<String,Object> extraClaims,
-            UserDetails userDetails
+            UserDetails userDetails,
+            long expiration
     ){
         return Jwts
                 .builder()
@@ -40,8 +42,20 @@ public class JwtService {
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
-    public String generateToken(UserDetails userDetails){
+    public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
+    }
+    public String generateToken(
+            Map<String, Object> extraClaims,
+            UserDetails userDetails
+    ) {
+        return buildToken(extraClaims, userDetails, jwtExpiration);
+    }
+
+    public String generateRefreshToken(
+            UserDetails userDetails
+    ) {
+        return buildToken(new HashMap<>(), userDetails, refreshExpiration);
     }
     private Claims extractAllClaims(String token){
       return   Jwts.parserBuilder()

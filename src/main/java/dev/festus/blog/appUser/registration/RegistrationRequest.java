@@ -1,5 +1,7 @@
 package dev.festus.blog.appUser.registration;
 
 
-public record RegistrationRequest(String firstName, String lastName, String email, String password) {
+import dev.festus.blog.appUser.UserRole;
+
+public record RegistrationRequest(String firstName, String lastName, String email, String password, UserRole role) {
 }

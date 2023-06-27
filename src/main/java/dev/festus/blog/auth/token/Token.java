@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
-@Entity
+@Entity @Builder
 public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

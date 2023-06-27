@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Getter @Setter @RequiredArgsConstructor @AllArgsConstructor @ToString
-@Entity
+@Entity @Builder
 @Table(name = "appUsers")
 public class AppUser implements UserDetails {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
