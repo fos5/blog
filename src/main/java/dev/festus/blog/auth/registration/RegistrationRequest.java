@@ -1,4 +1,4 @@
-package dev.festus.blog.appUser.registration;
+package dev.festus.blog.auth.registration;
 
 
 import dev.festus.blog.appUser.UserRole;

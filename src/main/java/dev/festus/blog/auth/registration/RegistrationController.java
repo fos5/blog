@@ -1,4 +1,4 @@
-package dev.festus.blog.appUser.registration;
+package dev.festus.blog.auth.registration;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
