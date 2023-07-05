@@ -10,9 +10,5 @@ import java.util.Optional;
 @Repository
 public interface BlogPostRepository extends JpaRepository<BlogPost, Integer> {
     Optional<BlogPost> findBlogsByTitle(String title);
-    @Query("SELECT CASE WHEN COUNT(*) > 0 THEN TRUE" +
-            "ELSE FALSE END " +
-            "FROM blogPost b" +
-            "WHERE b.title = ?1")
     boolean existsByTitle(String title);
 }
