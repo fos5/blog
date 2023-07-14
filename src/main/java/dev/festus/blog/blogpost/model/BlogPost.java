@@ -17,7 +17,7 @@ public class BlogPost {
     private int id;
     @NonNull
     private String title;
-    @JsonFormat(pattern = "dd:MM:YY")
+//    @JsonFormat(pattern = "dd:MM:YY")
     private LocalDate date;
     @NonNull
     private String post;

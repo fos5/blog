@@ -1,4 +1,4 @@
-package dev.festus.blog.auth;
+package dev.festus.blog.security.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

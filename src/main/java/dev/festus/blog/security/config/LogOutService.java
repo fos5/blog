@@ -1,6 +1,6 @@
-package dev.festus.blog.security;
+package dev.festus.blog.security.config;
 
-import dev.festus.blog.auth.token.TokenRepository;
+import dev.festus.blog.security.auth.token.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class LogOutService implements LogoutHandler {
             HttpServletRequest request,
             HttpServletResponse response,
             Authentication authentication) {
-    final String authHeader = request.getHeader("Authorisation");
+    final String authHeader = request.getHeader("Authorization");
     final String jwt;
     if (authHeader == null || !authHeader.startsWith("Bearer ")){
         return;

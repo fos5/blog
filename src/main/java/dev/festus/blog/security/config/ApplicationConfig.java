@@ -1,4 +1,4 @@
-package dev.festus.blog.security;
+package dev.festus.blog.security.config;
 
 import dev.festus.blog.appUser.AppUserRepository;
 import dev.festus.blog.appUser.AppUserService;

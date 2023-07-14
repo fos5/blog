@@ -1,5 +1,6 @@
 package dev.festus.blog.appUser;
 
+import dev.festus.blog.security.auth.token.Token;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,10 +9,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Getter @Setter @RequiredArgsConstructor @AllArgsConstructor @ToString
 @Entity @Builder
-@Table(name = "appUsers")
 public class AppUser implements UserDetails {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -22,6 +23,8 @@ public class AppUser implements UserDetails {
     private UserRole role;
     private String password;
     //todo: private Bit profilePicture
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

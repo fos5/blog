@@ -1,4 +1,4 @@
-package dev.festus.blog.auth.token;
+package dev.festus.blog.security.auth.token;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,10 +11,10 @@ import java.util.Optional;
 @Repository
 public interface TokenRepository extends JpaRepository<Token,Long> {
     @Query(value = """
-            SELECT token  FROM Token
-            INNER JOIN app_users u ON token.user_id = u.id
-            WHERE u.id = :id AND (token.expired = 0 OR token.revoked = 0);
-            """)
+      select t from Token t inner join AppUser u\s
+      on t.user.id = u.id\s
+      where u.id = :id and (t.expired = false or t.revoked = false)\s
+      """)
     List<Token> findAllValidTokenByUserId(@Param("id") long id);
     Optional<Token> findByToken(String token);
 }

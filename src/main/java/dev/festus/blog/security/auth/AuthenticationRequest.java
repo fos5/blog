@@ -1,4 +1,4 @@
-package dev.festus.blog.auth;
+package dev.festus.blog.security.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package dev.festus.blog.auth.registration;
+package dev.festus.blog.security.auth.registration;
 
 import org.springframework.stereotype.Service;
 

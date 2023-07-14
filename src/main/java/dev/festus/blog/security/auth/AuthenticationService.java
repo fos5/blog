@@ -1,13 +1,13 @@
-package dev.festus.blog.auth;
+package dev.festus.blog.security.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.festus.blog.appUser.AppUser;
 import dev.festus.blog.appUser.AppUserRepository;
-import dev.festus.blog.auth.registration.RegistrationRequest;
-import dev.festus.blog.auth.token.Token;
-import dev.festus.blog.auth.token.TokenRepository;
-import dev.festus.blog.auth.token.TokenType;
-import dev.festus.blog.security.JwtService;
+import dev.festus.blog.security.auth.registration.RegistrationRequest;
+import dev.festus.blog.security.auth.token.Token;
+import dev.festus.blog.security.auth.token.TokenRepository;
+import dev.festus.blog.security.auth.token.TokenType;
+import dev.festus.blog.security.config.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -93,7 +93,7 @@ public class AuthenticationService {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws IOException {
-        final String authHeader = request.getHeader("Authorisation");
+        final String authHeader = request.getHeader("Authorization");
         final String refreshToken;
         final String userEmail;
         if (authHeader == null || !authHeader.startsWith("Bearer ")){

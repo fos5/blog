@@ -1,4 +1,4 @@
-package dev.festus.blog.security;
+package dev.festus.blog.security.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -22,7 +22,7 @@ public class JwtService {
     @Value("${spring.security.jwt.expiration}")
     private long jwtExpiration;
     @Value("${spring.security.jwt.secret}")
-    private static String SECRET_KEY;
+    private String  SECRET_KEY;
     @Value("${spring.security.jwt.issuer}")
     private String issuer;
     @Value("${spring.security.jwt.refresh}")

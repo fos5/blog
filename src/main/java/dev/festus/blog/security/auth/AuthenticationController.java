@@ -1,6 +1,6 @@
-package dev.festus.blog.auth;
+package dev.festus.blog.security.auth;
 
-import dev.festus.blog.auth.registration.RegistrationRequest;
+import dev.festus.blog.security.auth.registration.RegistrationRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
