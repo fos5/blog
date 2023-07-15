@@ -23,5 +23,17 @@ spring:
       expiration: 86400000
       issuer: Jaaja
       refresh: 604800000
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: 21be3a6bc9ed1c1e7d72
+            client-secret: 4cb1dad0686fd3cba57fa9f08c46d21dd739217a
+
+  logging:
+    level:
+      org:
+        springframework:
+          security: TRACE
 
 
