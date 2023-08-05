@@ -62,8 +62,6 @@ public class AuthenticationService {
         );
         AppUser appUser = repository.findByEmail(request.getEmail()).orElseThrow();
         var jwtToken = jwtService.generateToken(appUser);
-        //Todo: Don't go live without correcting this !!!
-        System.out.println(jwtToken);
         var refreshToken = jwtService.generateRefreshToken(appUser);
         revokeAllUserTokens(appUser);
         saveUserToken(appUser, jwtToken);
