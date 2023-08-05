@@ -10,6 +10,7 @@ import dev.festus.blog.security.auth.token.TokenType;
 import dev.festus.blog.security.config.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
+@Slf4j
 public class AuthenticationService {
     private final AppUserRepository repository;
     private final TokenRepository tokenRepository;
@@ -60,6 +62,8 @@ public class AuthenticationService {
         );
         AppUser appUser = repository.findByEmail(request.getEmail()).orElseThrow();
         var jwtToken = jwtService.generateToken(appUser);
+        //Todo: Don't go live without correcting this !!!
+        System.out.println(jwtToken);
         var refreshToken = jwtService.generateRefreshToken(appUser);
         revokeAllUserTokens(appUser);
         saveUserToken(appUser, jwtToken);

@@ -1,5 +1,6 @@
 package dev.festus.blog.appUser;
 
+import dev.festus.blog.blogpost.model.BlogPost;
 import dev.festus.blog.security.auth.token.Token;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,7 +26,9 @@ public class AppUser implements UserDetails {
     //todo: private Bit profilePicture
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
-
+    //show number of post a user has made
+    @OneToMany(mappedBy = "appUser")
+    private List<BlogPost> blogPosts;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());

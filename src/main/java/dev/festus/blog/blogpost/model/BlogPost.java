@@ -1,25 +1,26 @@
 package dev.festus.blog.blogpost.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import dev.festus.blog.appUser.AppUser;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.lang.NonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter @Setter
+@NoArgsConstructor  @AllArgsConstructor @Builder
 @Entity
 public class BlogPost {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @NonNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String title;
-//    @JsonFormat(pattern = "dd:MM:YY")
-    private LocalDate date;
-    @NonNull
     private String post;
-    private String readTime;
+    private String blogType;
+    private LocalDateTime timeStamp;
+    private String readingDuration;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private AppUser appUser;
+
 }
