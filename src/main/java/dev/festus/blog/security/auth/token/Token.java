@@ -8,7 +8,9 @@ import org.hibernate.Hibernate;
 
 import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
 @Entity @Builder
 @NoArgsConstructor @AllArgsConstructor
 public class Token {
@@ -17,7 +19,7 @@ public class Token {
     @GeneratedValue
     public Integer id;
 
-    @Column(unique = true)
+//    @Column(unique = true)
     public String token;
 
     @Enumerated(EnumType.STRING)

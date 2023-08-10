@@ -28,6 +28,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
+                .oauth2Login(withDefaults())
                 .authorizeHttpRequests(auth-> {
                     auth.requestMatchers("/api/v*/auth/**","/error/**").permitAll();
                     auth.anyRequest().authenticated();
@@ -36,10 +37,9 @@ public class SecurityConfig {
                 .authenticationProvider(authProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(logout->logout
-                        .logoutUrl("/api/v1/logout")
+                        .logoutUrl("/api/v1/auth/logout")
                         .addLogoutHandler(logoutHandler)
                         .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()))
-                .oauth2Login(withDefaults())
                 .build();
 
     }
