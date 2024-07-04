@@ -2,7 +2,6 @@ server:
   error:
     include-message: always
     include-binding-errors: always
-
 spring:
   datasource:
     url: jdbc:sqlserver://localhost:1433;databaseName=blogposts;encrypt=true;trustServerCertificate=true;
@@ -29,7 +28,17 @@ spring:
           github:
             client-id: 21be3a6bc9ed1c1e7d72
             client-secret: 4cb1dad0686fd3cba57fa9f08c46d21dd739217a
-
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: festusoshinfowokan@gmail.com
+    password: bdaekguszyecadcn
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   logging:
     level:
       org:

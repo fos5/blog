@@ -1,5 +1,6 @@
 package dev.festus.blog.blogpost.service;
 
+import dev.festus.blog.appUser.AppUser;
 import dev.festus.blog.blogpost.model.BlogPost;
 import dev.festus.blog.blogpost.model.BlogPostRequest;
 import dev.festus.blog.blogpost.model.BlogPostResponse;
@@ -15,13 +16,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class BlogPostService implements BlogContracts {
 
     private final BlogRepository blogRepository;
     private final BlogPostMapper mapperService;
+
+    public BlogPostService(BlogRepository blogRepository, BlogPostMapper mapperService) {
+        this.blogRepository = blogRepository;
+        this.mapperService = mapperService;
+    }
+
     @Override
-    public BlogPostResponse addNewBlog(BlogPostRequest request) throws NotValidException {
+    public BlogPost addNewBlog(BlogPostRequest request) throws NotValidException {
         if (request.title() == null || request.title().isBlank()){
             throw new NotValidException("Please Enter a title for the blog");
         }
@@ -32,8 +38,7 @@ public class BlogPostService implements BlogContracts {
                 .timeStamp(LocalDateTime.now())
                 .readingDuration(calculateReadTime(request.post().length()))
                 .build();
-        blogRepository.save(newBlog);
-       return mapperService.apply(newBlog);
+       return blogRepository.save(newBlog);
     }
 
     @Override
@@ -86,7 +91,10 @@ public class BlogPostService implements BlogContracts {
         //Todo:
         return null;
     }
-
+//    public List<BlogPost> getAllUserBlog(AppUser user) throws ResourceNotFoundException {
+//      return   blogRepository.findBlogByUserEmail(user.getEmail())
+//              .orElseThrow(()-> new ResourceNotFoundException("Resource not found !"));
+//    }
     private boolean blogPostExists(long id){
         return blogRepository.existsById(id);
     }

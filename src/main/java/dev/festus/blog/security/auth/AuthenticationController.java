@@ -3,11 +3,9 @@ package dev.festus.blog.security.auth;
 import dev.festus.blog.security.auth.registration.RegistrationRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.coyote.Request;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -23,8 +21,12 @@ public class AuthenticationController {
 
   @PostMapping("/register")
   public ResponseEntity<AuthenticationResponse> register(
-      @RequestBody RegistrationRequest request
+      @RequestBody RegistrationRequest request,
+      @RequestHeader(required = false, defaultValue = "WEB") String client
   ) {
+    if (client.equals("MOBILE_APP")) {
+      return ResponseEntity.ok(service.registerMobile(request));
+    }
     return ResponseEntity.ok(service.register(request));
   }
   @PostMapping("/authenticate")

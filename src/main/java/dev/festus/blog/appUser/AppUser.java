@@ -21,7 +21,7 @@ public class AppUser implements UserDetails {
     private String lastName;
     private String email;
     @Enumerated(EnumType.STRING)
-    private UserRole role;
+    private UserRole role = UserRole.USER;
     private String password;
     //todo: private Bit profilePicture
     @OneToMany(mappedBy = "user")
@@ -29,6 +29,7 @@ public class AppUser implements UserDetails {
     //show number of post a user has made
     @OneToMany(mappedBy = "appUser")
     private List<BlogPost> blogPosts;
+    private boolean isEnabled = false;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
@@ -62,7 +63,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 
 }

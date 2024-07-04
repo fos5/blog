@@ -3,13 +3,14 @@ package dev.festus.blog.blogpost.model;
 import dev.festus.blog.appUser.AppUser;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDateTime;
 
 @Getter @Setter
 @NoArgsConstructor  @AllArgsConstructor @Builder
 @Entity
-public class BlogPost {
+public class BlogPost extends RepresentationModel<BlogPost> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -22,5 +23,4 @@ public class BlogPost {
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private AppUser appUser;
-
 }
