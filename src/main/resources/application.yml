@@ -5,10 +5,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=blogposts;encrypt=true;trustServerCertificate=true;
-    username: sa
-    password: '@adewunmI1738'
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://${db_server};databaseName=${db_name};encrypt=true;trustServerCertificate=true;
+    username: ${db_username}
+    password: ${db_password}
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -19,16 +18,16 @@ spring:
           show-sql: true
   security:
     jwt:
-      secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      secret: ${jwt_secret}
       expiration: 86400000
-      issuer: Jaaja
+      issuer: ${jwt_issuer}
       refresh: 604800000
     oauth2:
       client:
         registration:
           github:
-            client-id: 21be3a6bc9ed1c1e7d72
-            client-secret: 4cb1dad0686fd3cba57fa9f08c46d21dd739217a
+            client-id: ${github_client_id}
+            client-secret: ${github_secret}
 
   logging:
     level:
