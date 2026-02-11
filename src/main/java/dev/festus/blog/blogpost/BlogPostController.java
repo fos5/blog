@@ -22,11 +22,11 @@ public class BlogPostController {
         return service.getAllBlogs();
     }
     @GetMapping("/{id}")
-    public BlogPost getBlogPostById(@PathVariable long id) throws ResourceNotFoundException {
+    public BlogPost getBlogPostById(@PathVariable long id) {
        return service.getBlogById(id);
     }
     @PostMapping
-    public BlogPostResponse addNewPost(@RequestBody BlogPostRequest request) throws NotValidException {
+    public BlogPostResponse addNewPost(@RequestBody BlogPostRequest request) {
         return service.addNewBlog(request);
     }
 }

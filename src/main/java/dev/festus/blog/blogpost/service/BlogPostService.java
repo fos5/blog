@@ -21,7 +21,7 @@ public class BlogPostService implements BlogContracts {
     private final BlogRepository blogRepository;
     private final BlogPostMapper mapperService;
     @Override
-    public BlogPostResponse addNewBlog(BlogPostRequest request) throws NotValidException {
+    public BlogPostResponse addNewBlog(BlogPostRequest request) {
         if (request.title() == null || request.title().isBlank()){
             throw new NotValidException("Please Enter a title for the blog");
         }
@@ -37,7 +37,7 @@ public class BlogPostService implements BlogContracts {
     }
 
     @Override
-    public BlogPost getBlogById(long id) throws ResourceNotFoundException {
+    public BlogPost getBlogById(long id)  {
         return blogRepository
                 .findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("No blog exists with the id"));
@@ -53,7 +53,7 @@ public class BlogPostService implements BlogContracts {
     }
 
     @Override
-    public List<BlogPostResponse> getBlogByTitle(String title) throws ResourceNotFoundException {
+    public List<BlogPostResponse> getBlogByTitle(String title) {
         return blogRepository
                 .findBlogByTitle(title)
                 .stream()
@@ -76,7 +76,7 @@ public class BlogPostService implements BlogContracts {
     }
 
     @Override
-    public void deleteBlogById(long id) throws ResourceNotFoundException {
+    public void deleteBlogById(long id)  {
         if (blogPostExists(id))
             throw new ResourceNotFoundException("Oops! could not delete because the id does not exist");
         blogRepository.deleteById(id);

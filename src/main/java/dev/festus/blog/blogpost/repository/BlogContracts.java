@@ -10,13 +10,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface BlogContracts {
-    BlogPostResponse addNewBlog(BlogPostRequest request) throws NotValidException;
-    BlogPost getBlogById(long id) throws ResourceNotFoundException;
+    BlogPostResponse addNewBlog(BlogPostRequest request) ;
+    BlogPost getBlogById(long id) ;
     List<BlogPostResponse> getAllBlogs();
-    List<BlogPostResponse> getBlogByTitle(String title) throws ResourceNotFoundException;
+    List<BlogPostResponse> getBlogByTitle(String title);
     List<BlogPostResponse> getByDate(String date);
     List<BlogPostResponse> getByBlogType(String blogType);
-    void deleteBlogById(long id) throws ResourceNotFoundException;
+    void deleteBlogById(long id);
     BlogPostResponse updateBlog(long id);
 
 
